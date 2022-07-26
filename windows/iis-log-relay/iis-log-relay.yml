@@ -1,28 +1,28 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: andy-iis
+  name: iis-log-relay
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: andy-iis
-  namespace: andy-iis
+  name: iis-log-relay
+  namespace: iis-log-relay
   labels:
-    app: andy-iis
+    app: iis-log-relay
 spec:
   replicas: 1
   template:
     metadata:
-      name: andy-iis
-      namespace: andy-iis
+      name: iis-log-relay
+      namespace: iis-log-relay
       labels:
-        app: andy-iis
+        app: iis-log-relay
     spec:
       nodeSelector:
         "kubernetes.io/os": windows
       containers:
-      - name: andy-iis
+      - name: iis-log-relay
         # image: mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019
         image: monopot/iis:core-log-relay-1.0.1
         # resources:
@@ -41,13 +41,13 @@ spec:
           operator: Equal
   selector:
     matchLabels:
-      app: andy-iis
+      app: iis-log-relay
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: andy-iis
-  namespace: andy-iis
+  name: iis-log-relay
+  namespace: iis-log-relay
 spec:
   type: LoadBalancer
   ports:
@@ -55,4 +55,4 @@ spec:
     port: 80
     targetPort: 80
   selector:
-    app: andy-iis
+    app: iis-log-relay
