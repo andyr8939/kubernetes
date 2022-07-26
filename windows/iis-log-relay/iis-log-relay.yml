@@ -23,8 +23,7 @@ spec:
         "kubernetes.io/os": windows
       containers:
       - name: iis-log-relay
-        # image: mcr.microsoft.com/windows/servercore/iis:windowsservercore-ltsc2019
-        image: monopot/iis:core-log-relay-1.0.1
+        image: monopot/iis:core-log-relay-1.0.2
         # resources:
         #   limits:
         #     cpu: 1

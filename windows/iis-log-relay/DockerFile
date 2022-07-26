@@ -28,7 +28,7 @@ COPY ./LogMonitorConfig.json C:/LogMonitor/
 
 # Enable ETW logging for Default Web Site on IIS
 
-RUN c:\windows\system32\inetsrv\appcmd.exe set config -section:system.applicationHost/sites /"[name='Default Web Site'].logFile.logTargetW3C:"File,ETW"" /commit:apphost
+# RUN c:\windows\system32\inetsrv\appcmd.exe set config -section:system.applicationHost/sites /"[name='Default Web Site'].logFile.logTargetW3C:"File,ETW"" /commit:apphost
 
 EXPOSE 80
 
