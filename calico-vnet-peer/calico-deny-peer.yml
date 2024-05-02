@@ -1,0 +1,23 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: default-deny-peered-vnets
+spec:
+  selector: all()
+  types:
+  - Ingress
+  - Egress
+  ingress:
+  - action: Deny
+    source:
+      nets:
+      - 10.10.0.0/16 # Peer Ranges
+      - 192.168.0.0/16 # Peer Ranges
+  - action: Allow
+  egress:
+  - action: Deny
+    destination:
+      nets:
+      - 10.10.0.0/16 # Peer Ranges
+      - 192.168.0.0/16 # Peer Ranges
+  - action: Allow

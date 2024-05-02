@@ -1,0 +1,19 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-customer1-traffic-to-peer
+spec:
+  selector: customer == 'customer1'
+  types:
+  - Ingress
+  - Egress
+  ingress:
+  - action: Allow
+    source:
+      nets:
+      - 10.10.1.0/24
+  egress:
+  - action: Allow
+    destination:
+      nets:
+      - 10.10.1.0/24
